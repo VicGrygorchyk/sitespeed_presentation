@@ -1,0 +1,49 @@
+version: '3'
+services:
+    sitespeed.io:
+      image: sitespeedio/sitespeed.io
+      command: -V
+      shm_size: 1g
+      volumes:
+            - ./sitespeed-result/:/sitespeed.io/sitespeed-result
+            - ./url.txt:/sitespeed.io/url.txt
+            - ./config.json:/sitespeed.io/config.json
+            - ./login.js:/sitespeed.io/login.js
+            - ./search.js:/sitespeed.io/search.js
+            - ./login_test.js:/sitespeed.io/login_test.js
+            - ./search_test.js:/sitespeed.io/search_test.js
+    grafana:
+      image: grafana/grafana:5.2.1
+      depends_on:
+        - graphite
+      links:
+        - graphite
+      ports:
+        - "3000:3000"
+      environment:
+        - GF_SECURITY_ADMIN_PASSWORD=admin_123
+        - GF_SECURITY_ADMIN_USER=admin
+        - GF_AUTH_ANONYMOUS_ENABLED=true
+        - GF_USERS_ALLOW_SIGN_UP=false
+        - GF_USERS_ALLOW_ORG_CREATE=false
+      volumes:
+        - grafana:/var/lib/grafana
+      restart: always
+    graphite:
+      image: sitespeedio/graphite:1.0.2-2-b
+      ports:
+        - "2003:2003"
+        - "8000:80"
+      restart: always
+      volumes:
+        - whisper:/opt/graphite/storage/whisper
+    grafana-setup:
+      image: sitespeedio/grafana-bootstrap:7.0
+      links:
+        - grafana
+      environment:
+        - GF_PASSWORD=admin123
+        - GF_USER=admin
+volumes:
+    grafana:
+    whisper:
