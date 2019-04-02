@@ -1,0 +1,11 @@
+{
+	"browsertime": {
+			"iterations": 1,
+			"browser": "chrome"
+	},
+	"graphite": {
+			"host":"graphite", 
+			"auth":"admin:admin",
+			"httpPort":"8000"
+	}
+}
