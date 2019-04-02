@@ -1,5 +1,5 @@
 # sitespeed_presentation
 
-Presentation from the Mobidev QA Conference 08/09/2018
+Presentation about Sitespeed.io
 by Viktor Gryhorchuk
-https://docs.google.com/presentation/d/1CQ9C-Jatx08wEazdoz145dAqrf52eaDRKCtcQnPJ7b8/edit?usp=sharing
+https://docs.google.com/presentation/d/1EmLp1GhLqF38Q1TiytWMgn6Rj59mBmy-9RDi3Gv0kD0/edit?usp=sharing
